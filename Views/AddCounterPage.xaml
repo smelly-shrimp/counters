@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:models="clr-namespace:Counters.Models"
+             x:Class="Counters.Views.AddCounterPage"
+             x:DataType="models:AddCounterModel"
+             Title="{Binding Title}">
+    <VerticalStackLayout Spacing="8"
+                         Margin="16">
+        <Label Text="{Binding NameLabel}" />
+        <Editor Text="{Binding Name}" />
+
+        <Label Text="{Binding InitialValueLabel}" />
+        <Editor Text="{Binding InitialValue}" />
+
+        <Picker Title="{Binding ColorLabel}"
+                ItemsSource="{Binding AvailableColors}"
+                SelectedItem="{Binding Color}" />
+
+        <Button Text="{Binding SubmitLabel}"
+                Clicked="OnSubmitClicked" />
+    </VerticalStackLayout>
+</ContentPage>

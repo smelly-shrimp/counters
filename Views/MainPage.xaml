@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:components="clr-namespace:Counters.Components"
+             xmlns:models="clr-namespace:Counters.Models"
+             x:Class="Counters.Views.MainPage"
+             x:DataType="models:MainModel"
+             Title="{Binding Title}">
+    <VerticalStackLayout>
+        <VerticalStackLayout Spacing="8"
+                             Margin="16">
+            <Button Text="{Binding AddCounterLabel}"
+                    Clicked="OnAddCounterClicked" />
+
+            <CollectionView x:Name="CountersCollection"
+                            ItemsSource="{Binding Counters}"
+                            EmptyView="{Binding NoCountersLabel}">
+                <CollectionView.ItemsLayout>
+                    <LinearItemsLayout Orientation="Vertical"
+                                       ItemSpacing="16" />
+                </CollectionView.ItemsLayout>
+
+                <CollectionView.ItemTemplate>
+                    <DataTemplate x:DataType="models:Counter">
+                        <components:Counter BindingContext="{Binding}"
+                                            ValueChanged="OnCounterValueChange"
+                                            DeleteClicked="OnCounterDeleteClicked" />
+                    </DataTemplate>
+                </CollectionView.ItemTemplate>
+            </CollectionView>
+        </VerticalStackLayout>
+    </VerticalStackLayout>
+</ContentPage>
